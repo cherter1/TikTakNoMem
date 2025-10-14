@@ -1,0 +1,14 @@
+C:\Code\TikTakNoMem\TikTakNoMem\bin\Debug\net9.0\TikTakNoMem.exe
+C:\Code\TikTakNoMem\TikTakNoMem\bin\Debug\net9.0\TikTakNoMem.deps.json
+C:\Code\TikTakNoMem\TikTakNoMem\bin\Debug\net9.0\TikTakNoMem.runtimeconfig.json
+C:\Code\TikTakNoMem\TikTakNoMem\bin\Debug\net9.0\TikTakNoMem.dll
+C:\Code\TikTakNoMem\TikTakNoMem\bin\Debug\net9.0\TikTakNoMem.pdb
+C:\Code\TikTakNoMem\TikTakNoMem\obj\Debug\net9.0\TikTakNoMem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\TikTakNoMem\TikTakNoMem\obj\Debug\net9.0\TikTakNoMem.AssemblyInfoInputs.cache
+C:\Code\TikTakNoMem\TikTakNoMem\obj\Debug\net9.0\TikTakNoMem.AssemblyInfo.cs
+C:\Code\TikTakNoMem\TikTakNoMem\obj\Debug\net9.0\TikTakNoMem.csproj.CoreCompileInputs.cache
+C:\Code\TikTakNoMem\TikTakNoMem\obj\Debug\net9.0\TikTakNoMem.dll
+C:\Code\TikTakNoMem\TikTakNoMem\obj\Debug\net9.0\refint\TikTakNoMem.dll
+C:\Code\TikTakNoMem\TikTakNoMem\obj\Debug\net9.0\TikTakNoMem.pdb
+C:\Code\TikTakNoMem\TikTakNoMem\obj\Debug\net9.0\TikTakNoMem.genruntimeconfig.cache
+C:\Code\TikTakNoMem\TikTakNoMem\obj\Debug\net9.0\ref\TikTakNoMem.dll
