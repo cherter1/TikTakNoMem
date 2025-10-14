@@ -4,120 +4,120 @@ namespace TikTakNoMem;
 
 internal class Player : GameManager
 {
-    private bool aiplayed;
-    private string TurnKey;
-    private bool TurnTaken;
+    private bool _aiPlayed;
+    private string _turnKey = string.Empty;
+    private bool _turnTaken;
 
 
     public void TakeTurn(char ox)
     {
-        while (!TurnTaken)
+        while (!_turnTaken)
             try
             {
-                TurnKey = Console.ReadLine();
+                _turnKey = Console.ReadLine();
 
-                if (TurnKey == "TL")
+                if (_turnKey == "TL")
                 {
                     if (BoardSymbols[0, 0] == ' ')
                     {
                         BoardSymbols[0, 0] = ox;
-                        TurnTaken = true;
+                        _turnTaken = true;
                     }
                     else
                     {
                         Console.WriteLine("That Spot is Taken");
                     }
                 }
-                else if (TurnKey == "TM")
+                else if (_turnKey == "TM")
                 {
                     if (BoardSymbols[0, 1] == ' ')
                     {
                         BoardSymbols[0, 1] = ox;
-                        TurnTaken = true;
+                        _turnTaken = true;
                     }
                     else
                     {
                         Console.WriteLine("That Spot is Taken");
                     }
                 }
-                else if (TurnKey == "TR")
+                else if (_turnKey == "TR")
                 {
                     if (BoardSymbols[0, 2] == ' ')
                     {
                         BoardSymbols[0, 2] = ox;
-                        TurnTaken = true;
+                        _turnTaken = true;
                     }
                     else
                     {
                         Console.WriteLine("That Spot is Taken");
                     }
                 }
-                else if (TurnKey == "ML")
+                else if (_turnKey == "ML")
                 {
                     if (BoardSymbols[1, 0] == ' ')
                     {
                         BoardSymbols[1, 0] = ox;
-                        TurnTaken = true;
+                        _turnTaken = true;
                     }
                     else
                     {
                         Console.WriteLine("That Spot is Taken");
                     }
                 }
-                else if (TurnKey == "C")
+                else if (_turnKey == "C")
                 {
                     if (BoardSymbols[1, 1] == ' ')
                     {
                         BoardSymbols[1, 1] = ox;
-                        TurnTaken = true;
+                        _turnTaken = true;
                     }
                     else
                     {
                         Console.WriteLine("That Spot is Taken");
                     }
                 }
-                else if (TurnKey == "MR")
+                else if (_turnKey == "MR")
                 {
                     if (BoardSymbols[1, 2] == ' ')
                     {
                         BoardSymbols[1, 2] = ox;
-                        TurnTaken = true;
+                        _turnTaken = true;
                     }
                     else
                     {
                         Console.WriteLine("That Spot is Taken");
                     }
                 }
-                else if (TurnKey == "BL")
+                else if (_turnKey == "BL")
                 {
                     if (BoardSymbols[2, 0] == ' ')
                     {
                         BoardSymbols[2, 0] = ox;
-                        TurnTaken = true;
+                        _turnTaken = true;
                     }
                     else
                     {
                         Console.WriteLine("That Spot is Taken");
                     }
                 }
-                else if (TurnKey == "BM")
+                else if (_turnKey == "BM")
                 {
                     if (BoardSymbols[2, 1] == ' ')
                     {
                         BoardSymbols[2, 1] = ox;
-                        TurnTaken = true;
+                        _turnTaken = true;
                     }
                     else
                     {
                         Console.WriteLine("That Spot is Taken");
                     }
                 }
-                else if (TurnKey == "BR")
+                else if (_turnKey == "BR")
                 {
                     if (BoardSymbols[2, 2] == ' ')
                     {
                         BoardSymbols[2, 2] = ox;
-                        TurnTaken = true;
+                        _turnTaken = true;
                     }
                     else
                     {
@@ -134,20 +134,20 @@ internal class Player : GameManager
                 Console.WriteLine("Invalid turn key try again");
             }
 
-        TurnTaken = false;
+        _turnTaken = false;
     }
 
     public void AiTakeTurn(char op)
     {
         var rnd = new Random();
         var r = rnd.Next(1, 10);
-        while (!aiplayed)
+        while (!_aiPlayed)
             if (r == 1)
             {
                 if (BoardSymbols[0, 0] == ' ')
                 {
                     BoardSymbols[0, 0] = op;
-                    aiplayed = true;
+                    _aiPlayed = true;
                 }
                 else
                 {
@@ -159,7 +159,7 @@ internal class Player : GameManager
                 if (BoardSymbols[0, 1] == ' ')
                 {
                     BoardSymbols[0, 1] = op;
-                    aiplayed = true;
+                    _aiPlayed = true;
                 }
                 else
                 {
@@ -171,7 +171,7 @@ internal class Player : GameManager
                 if (BoardSymbols[0, 2] == ' ')
                 {
                     BoardSymbols[0, 2] = op;
-                    aiplayed = true;
+                    _aiPlayed = true;
                 }
                 else
                 {
@@ -183,7 +183,7 @@ internal class Player : GameManager
                 if (BoardSymbols[1, 0] == ' ')
                 {
                     BoardSymbols[1, 0] = op;
-                    aiplayed = true;
+                    _aiPlayed = true;
                 }
                 else
                 {
@@ -195,7 +195,7 @@ internal class Player : GameManager
                 if (BoardSymbols[1, 1] == ' ')
                 {
                     BoardSymbols[1, 1] = op;
-                    aiplayed = true;
+                    _aiPlayed = true;
                 }
                 else
                 {
@@ -207,7 +207,7 @@ internal class Player : GameManager
                 if (BoardSymbols[1, 2] == ' ')
                 {
                     BoardSymbols[1, 2] = op;
-                    aiplayed = true;
+                    _aiPlayed = true;
                 }
                 else
                 {
@@ -219,7 +219,7 @@ internal class Player : GameManager
                 if (BoardSymbols[2, 0] == ' ')
                 {
                     BoardSymbols[2, 0] = op;
-                    aiplayed = true;
+                    _aiPlayed = true;
                 }
                 else
                 {
@@ -231,7 +231,7 @@ internal class Player : GameManager
                 if (BoardSymbols[2, 1] == ' ')
                 {
                     BoardSymbols[2, 1] = op;
-                    aiplayed = true;
+                    _aiPlayed = true;
                 }
                 else
                 {
@@ -243,7 +243,7 @@ internal class Player : GameManager
                 if (BoardSymbols[2, 2] == ' ')
                 {
                     BoardSymbols[2, 2] = op;
-                    aiplayed = true;
+                    _aiPlayed = true;
                 }
                 else
                 {
@@ -251,6 +251,6 @@ internal class Player : GameManager
                 }
             }
 
-        aiplayed = false;
+        _aiPlayed = false;
     }
 }

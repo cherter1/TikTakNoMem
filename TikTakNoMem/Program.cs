@@ -1,59 +1,73 @@
 ﻿using System;
 using TikTakNoMem;
 
-const int SinglePlayer = 1;
-const int MultiPlayer = 2;
-
-var menu = new StartMenu();
-menu.AskInstructions();
-
-do
+const int singlePlayer = 1;
+const int multiPlayer = 2;
+BaselineMetrics.RunWithMetrics(PlayGame, "Warmup (1 game)");
+BaselineMetrics.RunWithMetrics(() =>
 {
-    if (menu.GetMode() == SinglePlayer)
+    for (var i = 0; i < 5; i++)
     {
-        var player = new Player();
+        PlayGame();
+    }
+}, "baseline (5 game)");
 
-        while (!player.GameOver)
+return;
+
+
+void PlayGame()
+{
+    var menu = new StartMenu();
+    menu.AskInstructions();
+
+    do
+    {
+        if (menu.GetMode() == singlePlayer)
         {
-            Console.Write("Player One Take Your turn: ");
-            player.TakeTurn('X');
-            player.PrintBoard();
-            player.CheckForp1Win();
-            player.CheckForp2Win();
-            player.CheckForTie();
-            if (player.GameOver) break;
-            Console.WriteLine("AI's turn: ");
-            player.AiTakeTurn('O');
-            player.PrintBoard();
-            player.CheckForp1Win();
-            player.CheckForp2Win();
-            player.CheckForTie();
+            var player = new Player();
+
+            while (!player.GameOver)
+            {
+                Console.Write("Player One Take Your turn: ");
+                player.TakeTurn('X');
+                player.PrintBoard();
+                player.CheckForp1Win();
+                player.CheckForp2Win();
+                player.CheckForTie();
+                if (player.GameOver) break;
+                Console.WriteLine("AI's turn: ");
+                player.AiTakeTurn('O');
+                player.PrintBoard();
+                player.CheckForp1Win();
+                player.CheckForp2Win();
+                player.CheckForTie();
+            }
+
+            menu.Replay();
         }
 
-        menu.Replay();
-    }
-
-    if (menu.GetMode() == MultiPlayer)
-    {
-        var player = new Player();
-
-        while (!player.GameOver)
+        if (menu.GetMode() == multiPlayer)
         {
-            Console.Write("Player One Take Your turn: ");
-            player.TakeTurn('X');
-            player.PrintBoard();
-            player.CheckForp1Win();
-            player.CheckForp2Win();
-            player.CheckForTie();
-            if (player.GameOver) break;
-            Console.WriteLine("Player Two Take Your turn");
-            player.TakeTurn('O');
-            player.PrintBoard();
-            player.CheckForp1Win();
-            player.CheckForp2Win();
-            player.CheckForTie();
-        }
+            var player = new Player();
 
-        menu.Replay();
-    }
-} while (menu.playAgain);
+            while (!player.GameOver)
+            {
+                Console.Write("Player One Take Your turn: ");
+                player.TakeTurn('X');
+                player.PrintBoard();
+                player.CheckForp1Win();
+                player.CheckForp2Win();
+                player.CheckForTie();
+                if (player.GameOver) break;
+                Console.WriteLine("Player Two Take Your turn");
+                player.TakeTurn('O');
+                player.PrintBoard();
+                player.CheckForp1Win();
+                player.CheckForp2Win();
+                player.CheckForTie();
+            }
+
+            menu.Replay();
+        }
+    } while (menu.playAgain);
+}
