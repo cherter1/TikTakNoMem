@@ -5,7 +5,7 @@ namespace TikTakNoMem;
 internal class StartMenu
 {
     private readonly int GameMode;
-    private int goAgain;
+    private char goAgain;
     private readonly bool HasChosen;
     public bool playAgain;
     public bool SinglePlayer;
@@ -65,23 +65,31 @@ internal class StartMenu
 
     public void AskInstructions()
     {
-        var WantInstructions = false;
+        var wantInstructions = false;
         Console.WriteLine("Do You need instructions.");
-        Console.WriteLine("1. yes");
-        Console.WriteLine("2. no");
-        while (!WantInstructions)
+        char[] yesOption =
+        [
+            '1', '.', ' ', 'Y', 'e', 's'
+        ];
+        Console.WriteLine(yesOption);
+        char[] noOption =
+        [
+            '1', '.', ' ', 'N', 'o'
+        ];
+        Console.WriteLine(noOption);
+        while (!wantInstructions)
             try
             {
-                var Instructions = Convert.ToInt32(Console.ReadLine());
+                var instructionIndicator = Console.ReadKey(true).KeyChar;
 
-                if (Instructions == 1)
+                if (instructionIndicator == 0x31) // hex ascii code for 1
                 {
                     GiveInstructions();
-                    WantInstructions = true;
+                    wantInstructions = true;
                 }
-                else if (Instructions == 2)
+                else if (instructionIndicator == 0x32) // hex ascii code for 2
                 {
-                    WantInstructions = true;
+                    wantInstructions = true;
                 }
                 else
                 {
@@ -96,27 +104,38 @@ internal class StartMenu
 
     public int GetMode()
     {
-        if (SinglePlayer) return 1;
-
-        return 2;
+        return SinglePlayer ? 1 : 2;
     }
 
     public void Replay()
     {
-        Console.WriteLine("Do you want to play again:");
-        Console.WriteLine("1. Yes");
-        Console.WriteLine("2. No");
+        char[] askToPlayAgain =
+        [
+            'D', 'o', ' ', 'y', 'o', 'u', ' ', 'w', 'a', 'n', 't', ' ', 't', 'o', ' ', 'p', 'l', 'a', 'y', ' ', 'a',
+            'g', 'a', 'i', 'n', ':'
+        ];
+        Console.WriteLine(askToPlayAgain);
+        char[] yesOption =
+        [
+            '1', '.', ' ', 'Y', 'e', 's'
+        ];
+        Console.WriteLine(yesOption);
+        char[] noOption =
+        [
+            '1', '.', ' ', 'N', 'o'
+        ];
+        Console.WriteLine(noOption);
         while (!triedAgain)
             try
             {
-                goAgain = Convert.ToInt32(Console.ReadLine());
+                goAgain = Console.ReadKey().KeyChar;
 
-                if (goAgain == 1)
+                if (goAgain == 0x31)
                 {
                     triedAgain = true;
                     playAgain = true;
                 }
-                else if (goAgain == 2)
+                else if (goAgain == 0x32)
                 {
                     triedAgain = true;
                     playAgain = false;
