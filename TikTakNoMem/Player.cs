@@ -1,3 +1,5 @@
+using System;
+
 namespace TikTakNoMem;
 
 internal class Player : GameManager

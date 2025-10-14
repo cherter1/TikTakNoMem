@@ -1,4 +1,5 @@
-﻿using TikTakNoMem;
+﻿using System;
+using TikTakNoMem;
 
 const int SinglePlayer = 1;
 const int MultiPlayer = 2;
