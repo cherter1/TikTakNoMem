@@ -11,3 +11,32 @@ GC: Gen0=0, Gen1=0, Gen2=0
 Managed Heap (bytes, after): 117,096
 Working Set (MB): 24.3 -> 24.5
 Elapsed: 00:01:59.4232977
+
+[warmup (JIT) 1 check diag win metric]
+Allocated (bytes): 8,208
+GC: Gen0=0, Gen1=0, Gen2=0
+Managed Heap (bytes, after): 47,648
+Working Set (MB): 18.7 -> 19.0
+Elapsed: 00:00:00.0053976
+
+[baseline (10 times) check diag win metric]
+Allocated (bytes): 6,360
+GC: Gen0=0, Gen1=0, Gen2=0
+Managed Heap (bytes, after): 74,944
+Working Set (MB): 21.7 -> 21.7
+Elapsed: 00:00:00.0013940
+
+[warmup (JIT) 1 just write line]
+Allocated (bytes): 8,336
+GC: Gen0=0, Gen1=0, Gen2=0
+Managed Heap (bytes, after): 47,648
+Working Set (MB): 18.7 -> 19.0
+Elapsed: 00:00:00.0020355
+
+[baseline (10 times) just write line]
+Allocated (bytes): 6,488
+GC: Gen0=0, Gen1=0, Gen2=0
+Managed Heap (bytes, after): 75,056
+Working Set (MB): 21.7 -> 21.7
+Elapsed: 00:00:00.0015696
+

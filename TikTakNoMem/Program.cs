@@ -1,5 +1,5 @@
-﻿using System;
-using TikTakNoMem;
+﻿using TikTakNoMem;
+// 511 BOARD FILLED;
 
 const int singlePlayer = 1;
 const int multiPlayer = 2;
@@ -9,7 +9,7 @@ byte BoardRowTre = 0b_00_01_01_01;
 bool NineSlot = false;
 //Console.WriteLine("orig");
 //BoardRowOne = Convert.ToByte(BoardRowOne << 2); // shift left 00_11_11_00
-checkDiagWin(BoardRowOne, BoardRowTwo, BoardRowTre);
+//checkDiagWin(BoardRowOne, BoardRowTwo, BoardRowTre);
 //BoardRowOne = Convert.ToByte(BoardRowOne >> 2); // shift right 00_00_00_11
 //byte testBoardRow = 0b_11_11_10_11;
 //byte middleVal = testBoardRow;
@@ -17,18 +17,21 @@ checkDiagWin(BoardRowOne, BoardRowTwo, BoardRowTre);
 //middleVal >>= 6;
 //var binaryString = Convert.ToString(middleVal, 2).PadLeft(8, '0');
 //Console.WriteLine(binaryString);
-// BaselineMetrics.RunWithMetrics();
-// BaselineMetrics.RunWithMetrics(() =>
-// {
-//     for (var i = 0; i < 5; i++)
-//     {
-//         PlayGame();
-//     }
-// }, "baseline (5 game)");
+BaselineMetrics.RunWithMetrics(() =>
+{
+    Console.WriteLine("NineSlot");
+}, "warmup (JIT) 1 just write line");
+BaselineMetrics.RunWithMetrics(() =>
+{
+    for (var i = 0; i < 10; i++)
+    {
+        Console.WriteLine("NineSlot");
+    }
+}, "baseline (10 times) just write line");
 //PlayGame();
 return;
 
-void checkDiagWin(byte topRow, byte middleRow, byte bottomRow)
+static void checkDiagWin(byte topRow, byte middleRow, byte bottomRow)
 {
     byte topLeft = topRow;
     topLeft >>= 4;
@@ -38,7 +41,7 @@ void checkDiagWin(byte topRow, byte middleRow, byte bottomRow)
     byte bottomRight = bottomRow;
     bottomRight <<= 6;
     bottomRight >>= 6;
-    var diagByte = (byte)(topLeft & middleVal & bottomRight);
+    //var diagByte = (byte)(topLeft & middleVal & bottomRight);
     if (topLeft == 0b11 && middleVal == 0b11 && bottomRight == 0b11)
     {
         Console.WriteLine("X WINNER");
@@ -52,7 +55,7 @@ void checkDiagWin(byte topRow, byte middleRow, byte bottomRow)
         Console.WriteLine("NO WINNER YET ON FIRST DIAG");
     }
 }
-void PlayGame()
+/*void PlayGame()
 {
     var menu = new StartMenu();
     StartMenu.AskInstructions();
@@ -88,4 +91,4 @@ void PlayGame()
         }
 
     } while (menu.playAgain);
-}
+} */

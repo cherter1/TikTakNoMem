@@ -29,7 +29,7 @@ public static class BaselineMetrics
         Console.WriteLine($"""
                            [{label}]
                            Allocated (bytes): {endAllocated - startAllocated:N0}
-                           GC: Gen0={GC.CollectionCount(0) - g0}, Gen1={GC.CollectionCount(1) - g1}, Gen2={GC.CollectionCount(2) - g2}
+                           GC: Gen2={GC.CollectionCount(0) - g0}, Gen1={GC.CollectionCount(1) - g1}, Gen2={GC.CollectionCount(2) - g2}
                            Managed Heap (bytes, after): {GC.GetGCMemoryInfo().HeapSizeBytes:N0}
                            Working Set (MB): {startWorkingSet / (1024 * 1024.0):F1} -> {endWorkingSet / (1024 * 1024.0):F1}
                            Elapsed: {sw.Elapsed}
