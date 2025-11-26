@@ -40,3 +40,31 @@ Managed Heap (bytes, after): 75,056
 Working Set (MB): 21.7 -> 21.7
 Elapsed: 00:00:00.0015696
 
+[warmup (JIT) 1 just write line]
+Allocated (bytes): 6,640
+GC: Gen0=0, Gen1=0, Gen2=0
+Managed Heap (bytes, after): 55,576
+Working Set (MB): 19.9 -> 19.8
+Elapsed: 00:00:00.0003406
+
+[baseline (10 times) just write line]
+Allocated (bytes): 6,360
+GC: Gen0=0, Gen1=0, Gen2=0
+Managed Heap (bytes, after): 74,752
+Working Set (MB): 21.7 -> 21.7
+Elapsed: 00:00:00.0007757
+
+[warmup (JIT) 1 just write line]
+Allocated (bytes): 6,768
+GC: Gen0=0, Gen1=0, Gen2=0
+Managed Heap (bytes, after): 55,576
+Working Set (MB): 20.0 -> 19.8
+Elapsed: 00:00:00.0003739
+
+[baseline (10 times) just write line]
+Allocated (bytes): 6,488
+GC: Gen0=0, Gen1=0, Gen2=0
+Managed Heap (bytes, after): 74,880
+Working Set (MB): 21.7 -> 21.7
+Elapsed: 00:00:00.0007991
+

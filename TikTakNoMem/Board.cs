@@ -2,8 +2,8 @@ namespace TikTakNoMem;
 
 internal readonly struct Board(ushort x, ushort o)
 {
-    readonly ushort X = x;
-    readonly ushort O = o;
+    public readonly ushort X = x;
+    public readonly ushort O = o;
 
     //win masks
     const ushort maskW0 = 0b_111_000_000;
@@ -16,15 +16,34 @@ internal readonly struct Board(ushort x, ushort o)
     const ushort maskW7 = 0b_001_001_001;
 
 
-    public Board PlayX()
+    public Board PlayX(int sq)
     {
-        return default;
+        var exes = (ushort)(X | (256 >> sq));
+        var nBoard = new Board(exes, O);
+        return nBoard;
     }
 
-    public Board PlayO()
+    public bool ValidateMove(int sq)
     {
+        if (sq > 8 || sq < 0)
+        {
+            return false;
+        }
 
-        return default;
+        var occupiedMask = X | O;
+        if ((occupiedMask & (256 >> sq)) != 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public Board PlayO(int sq)
+    {
+        var ohs = (ushort)(O | ( 256 >> sq));
+        var nBoard = new Board(X, ohs);
+        return nBoard;
     }
 
     public bool CheckwinX()
