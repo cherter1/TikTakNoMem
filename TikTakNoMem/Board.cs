@@ -1,6 +1,6 @@
 namespace TikTakNoMem;
 
-internal readonly struct Board(ushort x, ushort o)
+public readonly struct Board(ushort x, ushort o)
 {
     public readonly ushort X = x;
     public readonly ushort O = o;

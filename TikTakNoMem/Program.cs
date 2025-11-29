@@ -1,4 +1,5 @@
-﻿using TikTakNoMem;
+﻿using System.Numerics;
+using TikTakNoMem;
 // 511 BOARD FILLED;
 
 var myBoard = new Board(0,0);
@@ -10,6 +11,26 @@ var boardXs = Convert.ToString(myBoard.X, 2).PadLeft(9, '0');
 var boardOs = Convert.ToString(myBoard.O, 2).PadLeft(9, '0');
 
 //at some point make it print in rows like the board bit by bit
+ushort ex = 0b_010_000_010;
+ushort oh = 0b_001_111_100;
+var boardastical = new Board(ex, oh);
+
+var boardState = (ushort)~(boardastical.O | boardastical.X);
+var stuff = (ushort) (boardState & 0b_111_111_111);
+var t = (ushort)(stuff & (ushort)-(short)stuff);
+var setBit = BitOperations.TrailingZeroCount(t);
+var boardStateToWrite = Convert.ToString(boardState, 2).PadLeft(9, '0');
+var stuffToWrite = Convert.ToString(stuff, 2).PadLeft(9, '0');
+var tToWrite = Convert.ToString(t, 2).PadLeft(9, '0');
+var setBitToWrite = Convert.ToString(setBit, 2).PadLeft(9, '0');
+Console.WriteLine(boardStateToWrite);
+Console.WriteLine(stuffToWrite);
+Console.WriteLine(tToWrite);
+Console.WriteLine(setBit);
+return;
+ushort biny = 0b_0001_0000_0000_1000;
+Console.WriteLine(BitOperations.LeadingZeroCount(biny));
+Console.WriteLine();
 Console.WriteLine("X");
 Console.WriteLine(boardXs);
 Console.WriteLine(myBoard.X);
