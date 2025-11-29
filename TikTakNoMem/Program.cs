@@ -11,22 +11,28 @@ var boardXs = Convert.ToString(myBoard.X, 2).PadLeft(9, '0');
 var boardOs = Convert.ToString(myBoard.O, 2).PadLeft(9, '0');
 
 //at some point make it print in rows like the board bit by bit
-ushort ex = 0b_010_000_010;
-ushort oh = 0b_001_111_100;
+ushort ex = 0b_010_001_010;
+ushort oh = 0b_100_000_100;
 var boardastical = new Board(ex, oh);
+Bot boty = new Bot(true);
+boty.SearchMove(boardastical);
+return;
 
-var boardState = (ushort)~(boardastical.O | boardastical.X);
-var stuff = (ushort) (boardState & 0b_111_111_111);
-var t = (ushort)(stuff & (ushort)-(short)stuff);
-var setBit = BitOperations.TrailingZeroCount(t);
+var boardState = ~(boardastical.O | boardastical.X);
+var setBit = BitOperations.TrailingZeroCount(boardState);
+//playmove for set bit square. return evaluation
+var bitToggleMask = 1 << setBit;
+var postLoopBoard = boardState ^ bitToggleMask; //figure out next possible parent move
+
 var boardStateToWrite = Convert.ToString(boardState, 2).PadLeft(9, '0');
-var stuffToWrite = Convert.ToString(stuff, 2).PadLeft(9, '0');
-var tToWrite = Convert.ToString(t, 2).PadLeft(9, '0');
-var setBitToWrite = Convert.ToString(setBit, 2).PadLeft(9, '0');
+var postLoopBoardToWrite = Convert.ToString(postLoopBoard, 2).PadLeft(9, '0');
+var postLoopSetBit = BitOperations.TrailingZeroCount(postLoopBoard);
+
 Console.WriteLine(boardStateToWrite);
-Console.WriteLine(stuffToWrite);
-Console.WriteLine(tToWrite);
 Console.WriteLine(setBit);
+Console.WriteLine(postLoopBoardToWrite);
+Console.WriteLine(postLoopSetBit);
+
 return;
 ushort biny = 0b_0001_0000_0000_1000;
 Console.WriteLine(BitOperations.LeadingZeroCount(biny));

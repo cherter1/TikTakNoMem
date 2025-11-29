@@ -9,11 +9,20 @@ public struct Bot(bool isX)
 
     public void SearchMove(Board board)
     {
-        var availBoardSquares = (ushort)~(board.X | board.O);
-        BitOperations.TrailingZeroCount(availBoardSquares);
+        var boardState = ~(board.O | board.X);
+        var sq = BitOperations.TrailingZeroCount(boardState);
 
-        Console.WriteLine();
+        var count = 0;
+
+        while (sq < 9)
+        {
+            //playmove for set bit square. return evaluation
+            var bitToggleMask = 1 << sq;
+            boardState ^= bitToggleMask; //figure out next possible parent move
+            sq = BitOperations.TrailingZeroCount(boardState);
+            count++;
+        }
+
+        Console.WriteLine($"loop ran {count} times");
     }
-
-
 }
