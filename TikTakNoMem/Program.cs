@@ -11,11 +11,12 @@ var boardXs = Convert.ToString(myBoard.X, 2).PadLeft(9, '0');
 var boardOs = Convert.ToString(myBoard.O, 2).PadLeft(9, '0');
 
 //at some point make it print in rows like the board bit by bit
-ushort ex = 0b_010_001_010;
-ushort oh = 0b_100_000_100;
+ushort ex = 0b_100_000_101;
+ushort oh = 0b_000_101_000;
 var boardastical = new Board(ex, oh);
-Bot boty = new Bot(true);
-boty.SearchMove(boardastical);
+Bot boty = new Bot(false);
+var eval = boty.SearchMove(boardastical, false);
+Console.WriteLine(eval);
 return;
 
 var boardState = ~(boardastical.O | boardastical.X);

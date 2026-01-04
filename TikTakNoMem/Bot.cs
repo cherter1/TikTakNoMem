@@ -7,22 +7,56 @@ public struct Bot(bool isX)
     private bool IsX = isX;
     private bool IsO = !isX;
 
-    public void SearchMove(Board board)
+    public int SearchMove(Board board, bool xTurn)
     {
         var boardState = ~(board.O | board.X);
         var sq = BitOperations.TrailingZeroCount(boardState);
-
-        var count = 0;
+        var branchEval = -2;
 
         while (sq < 9)
         {
             //playmove for set bit square. return evaluation
+            board = xTurn ? board.PlayX(sq) : board.PlayO(sq);
+            if (board.CheckFilled())
+            {
+                if (board.CheckWinX())
+                {
+                    if (IsX)
+                    {
+                        branchEval = 1;
+                    }
+
+                    branchEval = -1;
+                }
+                else if (board.CheckWinO())
+                {
+                    if (IsX)
+                    {
+                        branchEval = -1;
+                    }
+                    
+                    branchEval = 1;
+                }
+                else
+                {
+                    branchEval = 0;
+                }
+            }
+
             var bitToggleMask = 1 << sq;
             boardState ^= bitToggleMask; //figure out next possible parent move
             sq = BitOperations.TrailingZeroCount(boardState);
-            count++;
+            var returnedEval= SearchMove(board, !xTurn);
+            branchEval = returnedEval >= branchEval ? returnedEval : branchEval;
         }
 
-        Console.WriteLine($"loop ran {count} times");
+        return branchEval;
+
+    }
+
+    public void miniMax()
+    {
+
+        
     }
 }
