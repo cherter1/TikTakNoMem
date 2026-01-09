@@ -6,14 +6,14 @@ public readonly struct Board(ushort x, ushort o)
     public readonly ushort O = o;
 
     //win masks
-    const ushort maskW0 = 0b_111_000_000;
-    const ushort maskW1 = 0b_000_111_000;
-    const ushort maskW2 = 0b_000_000_111;
-    const ushort maskW3 = 0b_100_010_001;
-    const ushort maskW4 = 0b_001_010_100;
-    const ushort maskW5 = 0b_100_100_100;
-    const ushort maskW6 = 0b_010_010_010;
-    const ushort maskW7 = 0b_001_001_001;
+    const ushort MaskW0 = 0b_111_000_000;
+    const ushort MaskW1 = 0b_000_111_000;
+    const ushort MaskW2 = 0b_000_000_111;
+    const ushort MaskW3 = 0b_100_010_001;
+    const ushort MaskW4 = 0b_001_010_100;
+    const ushort MaskW5 = 0b_100_100_100;
+    const ushort MaskW6 = 0b_010_010_010;
+    const ushort MaskW7 = 0b_001_001_001;
 
     public Board PlayX(int sq)
     {
@@ -48,14 +48,14 @@ public readonly struct Board(ushort x, ushort o)
     public bool CheckWinX()
     {
         var dubski =
-            (X & maskW0) == maskW0
-            || (X & maskW1) == maskW1
-            || (X & maskW2) == maskW2
-            || (X & maskW3) == maskW3
-            || (X & maskW4) == maskW4
-            || (X & maskW5) == maskW5
-            || (X & maskW6) == maskW6
-            || (X & maskW7) == maskW7;
+            (X & MaskW0) == MaskW0
+            || (X & MaskW1) == MaskW1
+            || (X & MaskW2) == MaskW2
+            || (X & MaskW3) == MaskW3
+            || (X & MaskW4) == MaskW4
+            || (X & MaskW5) == MaskW5
+            || (X & MaskW6) == MaskW6
+            || (X & MaskW7) == MaskW7;
 
         return dubski;
     }
@@ -63,14 +63,14 @@ public readonly struct Board(ushort x, ushort o)
     public bool CheckWinO()
     {
         var dubski =
-            (O & maskW0) == maskW0
-            || (O & maskW1) == maskW1
-            || (O & maskW2) == maskW2
-            || (O & maskW3) == maskW3
-            || (O & maskW4) == maskW4
-            || (O & maskW5) == maskW5
-            || (O & maskW6) == maskW6
-            || (O & maskW7) == maskW7;
+            (O & MaskW0) == MaskW0
+            || (O & MaskW1) == MaskW1
+            || (O & MaskW2) == MaskW2
+            || (O & MaskW3) == MaskW3
+            || (O & MaskW4) == MaskW4
+            || (O & MaskW5) == MaskW5
+            || (O & MaskW6) == MaskW6
+            || (O & MaskW7) == MaskW7;
 
         return dubski;
     }
