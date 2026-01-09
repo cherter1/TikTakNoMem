@@ -79,4 +79,35 @@ public readonly struct Board(ushort x, ushort o)
     {
         return (X | O) == 511;
     }
+
+    public override string ToString()
+    {
+        Span<char> boardBuffer = stackalloc char[9];
+        for (int i = 0; i < 9; i++)
+        {
+            var currBit = 1 << i;
+            var modX = X & currBit;
+            var modO = O & currBit;
+            if (modX != currBit && modO != currBit)
+            {
+                boardBuffer[i] = ' ';
+                continue;
+            }
+            
+            if (modX == currBit)
+            {
+                boardBuffer[i] = 'X';
+                continue;
+            }
+
+            if (modO == currBit)
+            {
+                boardBuffer[i] = 'O';
+                continue;
+            }
+            
+        }
+
+        return $"{boardBuffer[8]} | {boardBuffer[7]} | {boardBuffer[6]}\n--|---|--\n{boardBuffer[5]} | {boardBuffer[4]} | {boardBuffer[3]}\n--|---|--\n{boardBuffer[2]} | {boardBuffer[1]} | {boardBuffer[0]}";
+    }
 }

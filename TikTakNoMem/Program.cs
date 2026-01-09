@@ -3,6 +3,8 @@ using TikTakNoMem;
 // 511 BOARD FILLED;
 
 var myBoard = new Board(0,0);
+Console.WriteLine(myBoard.ToString());
+return;
 myBoard = myBoard.PlayX(1);
 myBoard = myBoard.PlayX(7);
 bool valid = myBoard.ValidateMove(1);

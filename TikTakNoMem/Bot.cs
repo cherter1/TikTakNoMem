@@ -17,6 +17,7 @@ public struct Bot(bool isX)
         {
             //playmove for set bit square. return evaluation
             board = xTurn ? board.PlayX(sq) : board.PlayO(sq);
+            Console.WriteLine(board);
             if (board.CheckFilled())
             {
                 if (board.CheckWinX())
