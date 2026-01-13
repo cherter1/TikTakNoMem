@@ -28,12 +28,13 @@ void PlayGame()
 {
     var myBoard = new Board(0,0);
     var botPlayer = new Bot(false);
-    Console.WriteLine(myBoard.ToString());
-    Console.WriteLine("Player Take Turn: ");
-    var userInput = Console.ReadLine();
-    int validInput = -9;
     while (!myBoard.CheckWinO() && !myBoard.CheckWinX() && !myBoard.CheckFilled())
     {
+        
+        Console.WriteLine(myBoard.ToString());
+        Console.WriteLine("Player Take Turn: ");
+        var userInput = Console.ReadLine();
+        int validInput = -9;
         while (true)
         {
             if (!int.TryParse(userInput, out var sq))
@@ -55,7 +56,8 @@ void PlayGame()
             break;
         }
 
-        myBoard.PlayO(botMove);
+        myBoard = myBoard.PlayO(botMove);
+        Console.WriteLine("bot played: " +  botMove);
     }
 
     Console.WriteLine(myBoard.ToString());

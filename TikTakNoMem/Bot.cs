@@ -14,33 +14,19 @@ public readonly struct Bot(bool isX)
     public int EvaluateBoard(in Board board)
     {
         bool xWin = board.CheckWinX();
-        if (xWin) return isX ? 1 : -1;
+        if (xWin) return 1;
         
         bool oWin = board.CheckWinO();
-        if (oWin) return isX ? -1 : 1;
+        if (oWin) return -1;
 
         bool isFilled = board.CheckFilled();
         return isFilled ? 0 : 2;
     }
 
-    public int SearchMove(Board board, bool xTurn)
-    {
-        var boardState = ~(board.O | board.X);
-        var sq = BitOperations.TrailingZeroCount(boardState);
-
-        return 1;
-    }
-
     public int GetBestMove(in Board board, bool xTurn)
     {
-        
         int bestScore;
         int bestSq;
-        var evaluation = EvaluateBoard(board);
-        if (evaluation != 2)
-        {
-            return evaluation;
-        }
 
         if (xTurn)
         {
@@ -85,7 +71,6 @@ public readonly struct Bot(bool isX)
     public int MiniMax(in Board board, bool xTurn)
     {
         int bestScore;
-        int bestSq;
         var evaluation = EvaluateBoard(board);
         if (evaluation != 2)
         {
