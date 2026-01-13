@@ -3,8 +3,8 @@ using TikTakNoMem;
 // 511 BOARD FILLED;
 
 var myBoard = new Board(0,0);
-Console.WriteLine(myBoard.ToString());
-return;
+//Console.WriteLine(myBoard.ToString());
+//return;
 myBoard = myBoard.PlayX(1);
 myBoard = myBoard.PlayX(7);
 bool valid = myBoard.ValidateMove(1);
@@ -14,10 +14,12 @@ var boardOs = Convert.ToString(myBoard.O, 2).PadLeft(9, '0');
 
 //at some point make it print in rows like the board bit by bit
 ushort ex = 0b_100_000_101;
-ushort oh = 0b_000_101_000;
+ushort oh = 0b_001_101_000;
 var boardastical = new Board(ex, oh);
+Console.WriteLine(boardastical.ToString());
+Console.WriteLine();
 Bot boty = new Bot(false);
-var eval = boty.SearchMove(boardastical, false);
+var eval = boty.MiniMax(boardastical, true);
 Console.WriteLine(eval);
 return;
 
