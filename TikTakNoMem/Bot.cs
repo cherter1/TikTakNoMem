@@ -2,7 +2,7 @@ using System.Numerics;
 
 namespace TikTakNoMem;
 
-public struct Bot(bool isX)
+public readonly struct Bot(bool isX)
 {
     const int TABLE_SIZE  = 19683 * 2;
 
@@ -31,10 +31,61 @@ public struct Bot(bool isX)
         return 1;
     }
 
+    public int GetBestMove(in Board board, bool xTurn)
+    {
+        
+        int bestScore;
+        int bestSq;
+        var evaluation = EvaluateBoard(board);
+        if (evaluation != 2)
+        {
+            return evaluation;
+        }
+
+        if (xTurn)
+        {
+            bestScore = -2222;
+            var state = ~(board.X | board.O);
+            int sq = BitOperations.TrailingZeroCount(state);
+            bestSq = sq;
+            while (sq < 9)
+            {
+                var score = MiniMax(board.PlayX(sq), false);
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestSq = sq;
+                }
+                state = ~(~(state) | (1 << sq));
+                sq = BitOperations.TrailingZeroCount(state);
+            }
+        }
+        else
+        {
+            bestScore = +2222;
+            var state = ~(board.X | board.O);
+            int sq = BitOperations.TrailingZeroCount(state);
+            bestSq = sq;
+            while (sq < 9)
+            {
+                var score = MiniMax(board.PlayO(sq), true);
+                if (score < bestScore)
+                {
+                    bestScore = score;
+                    bestSq = sq;
+                }
+                state = ~(~(state) | (1 << sq));
+                sq = BitOperations.TrailingZeroCount(state);
+            }
+        }
+
+        return bestSq;
+    }
 
     public int MiniMax(in Board board, bool xTurn)
     {
         int bestScore;
+        int bestSq;
         var evaluation = EvaluateBoard(board);
         if (evaluation != 2)
         {

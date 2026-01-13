@@ -24,18 +24,13 @@ public readonly struct Board(ushort x, ushort o)
 
     public bool ValidateMove(int sq)
     {
-        if (sq > 8 || sq < 0)
+        if (sq is > 8 or < 0)
         {
             return false;
         }
 
         var occupiedMask = X | O;
-        if ((occupiedMask & (256 >> sq)) != 0)
-        {
-            return false;
-        }
-
-        return true;
+        return (occupiedMask & (1 << sq)) == 0;
     }
 
     public Board PlayO(int sq)

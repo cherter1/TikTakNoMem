@@ -1,7 +1,8 @@
 ﻿using System.Numerics;
 using TikTakNoMem;
 // 511 BOARD FILLED;
-
+PlayGame();
+return;
 var myBoard = new Board(0,0);
 //Console.WriteLine(myBoard.ToString());
 //return;
@@ -23,53 +24,60 @@ var eval = boty.MiniMax(boardastical, true);
 Console.WriteLine(eval);
 return;
 
-var boardState = ~(boardastical.O | boardastical.X);
-var setBit = BitOperations.TrailingZeroCount(boardState);
-//playmove for set bit square. return evaluation
-var bitToggleMask = 1 << setBit;
-var postLoopBoard = boardState ^ bitToggleMask; //figure out next possible parent move
-
-var boardStateToWrite = Convert.ToString(boardState, 2).PadLeft(9, '0');
-var postLoopBoardToWrite = Convert.ToString(postLoopBoard, 2).PadLeft(9, '0');
-var postLoopSetBit = BitOperations.TrailingZeroCount(postLoopBoard);
-
-Console.WriteLine(boardStateToWrite);
-Console.WriteLine(setBit);
-Console.WriteLine(postLoopBoardToWrite);
-Console.WriteLine(postLoopSetBit);
-
-return;
-ushort biny = 0b_0001_0000_0000_1000;
-Console.WriteLine(BitOperations.LeadingZeroCount(biny));
-Console.WriteLine();
-Console.WriteLine("X");
-Console.WriteLine(boardXs);
-Console.WriteLine(myBoard.X);
-Console.WriteLine("O");
-Console.WriteLine(boardOs);
-Console.WriteLine(myBoard.O);
-
-Console.WriteLine("shouldnt be valid");
-Console.WriteLine(valid);
-Console.WriteLine("should be valid");
-Console.WriteLine(validO);
-return;
-
-BaselineMetrics.RunWithMetrics(() =>
-{
-    Console.WriteLine("NineSlot");
-}, "warmup (JIT) 1 just write line");
-BaselineMetrics.RunWithMetrics(() =>
-{
-    for (var i = 0; i < 10; i++)
-    {
-        Console.WriteLine("NineSlot");
-    }
-}, "baseline (10 times) just write line");
-PlayGame();
-return;
-
 void PlayGame()
+{
+    var myBoard = new Board(0,0);
+    var botPlayer = new Bot(false);
+    Console.WriteLine(myBoard.ToString());
+    Console.WriteLine("Player Take Turn: ");
+    var userInput = Console.ReadLine();
+    int validInput = -9;
+    while (!myBoard.CheckWinO() && !myBoard.CheckWinX() && !myBoard.CheckFilled())
+    {
+        while (true)
+        {
+            if (!int.TryParse(userInput, out var sq))
+            {
+                continue;
+            }
+
+            if (sq is < 9 and >= 0)
+            {
+                validInput = sq;
+                break;
+            }
+        }
+        myBoard = myBoard.PlayX(validInput);
+        var botMove = botPlayer.GetBestMove(myBoard, false);
+        if (!myBoard.ValidateMove(botMove))
+        {
+            Console.WriteLine("Bot tried to play an illegal move!");
+            break;
+        }
+
+        myBoard.PlayO(botMove);
+    }
+
+    Console.WriteLine(myBoard.ToString());
+    if (myBoard.CheckWinO())
+    {
+        Console.WriteLine("O Wins the game!");
+    } 
+    else if (myBoard.CheckWinX())
+    {
+        Console.WriteLine("X Wins the game!");
+    }
+    else if (myBoard.CheckFilled())
+    {
+        Console.WriteLine("Cats game!");
+    }
+    else
+    {
+        Console.WriteLine("something went wrong");
+    }
+}
+
+void OldPlayGame()
 {
     var menu = new StartMenu();
     StartMenu.AskInstructions();
