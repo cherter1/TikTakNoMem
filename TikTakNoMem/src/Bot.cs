@@ -2,10 +2,8 @@ using System.Numerics;
 
 namespace TikTakNoMem;
 
-public readonly struct Bot(bool isX)
+public readonly struct Bot
 {
-    const int TABLE_SIZE  = 19683 * 2;
-
     /// <summary>
     /// evaluates the position of a given board
     /// </summary>
