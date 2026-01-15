@@ -8,18 +8,26 @@ namespace Ttt.Bot.Benchmarks;
 public class BotBench
 {
     private TikTakNoMem.Bot _bot;
-    private Board _board;
+    private Board _boardBase;
+    private Board _board_SinglePossible;
 
     [GlobalSetup]
     public void Setup()
     {
         _bot = new TikTakNoMem.Bot();
-        _board = new Board(0,0);
+        _boardBase = new Board(0,0);
+        _board_SinglePossible = new Board(0b_110_000_101,0b_001_011_010);
     }
 
     [Benchmark]
-    public int GetBotBestMove_PrelimBenchmark()
+    public int GetBestMove_PrelimBenchmark_BasePosition()
     {
-        return _bot.GetBestMove(_board, true);
+        return _bot.GetBestMove(_boardBase, true);
+    }
+
+    [Benchmark]
+    public int GetBestMove_PrelimBenchmark_OnlyOnePossibleMove()
+    {
+        return _bot.GetBestMove(_boardBase, true);
     }
 }
