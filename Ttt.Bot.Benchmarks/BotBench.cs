@@ -28,6 +28,12 @@ public class BotBench
     [Benchmark]
     public int GetBestMove_PrelimBenchmark_OnlyOnePossibleMove()
     {
-        return _bot.GetBestMove(_boardBase, true);
+        return _bot.GetBestMove(_board_SinglePossible, true);
+    }
+    
+    [Benchmark]
+    public int ReturnOne_Control()
+    {
+        return 1;
     }
 }
