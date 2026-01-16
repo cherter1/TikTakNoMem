@@ -7,8 +7,8 @@ AMD Ryzen 5 7600X 4.70GHz, 1 CPU, 12 logical and 6 physical cores
 
 
 ```
-| Method                                          | Mean              | Error          | StdDev        | Allocated |
-|------------------------------------------------ |------------------:|---------------:|--------------:|----------:|
-| GetBestMove_PrelimBenchmark_BasePosition        | 3,571,798.1520 ns | 10,877.5450 ns | 9,083.2428 ns |         - |
-| GetBestMove_PrelimBenchmark_OnlyOnePossibleMove |         5.1653 ns |      0.0245 ns |     0.0229 ns |         - |
-| ReturnOne_Control                               |         0.0029 ns |      0.0027 ns |     0.0024 ns |         - |
+| Method                                          | Mean              | Error         | StdDev        | Median            | Nodes Visited | Allocated |
+|------------------------------------------------ |------------------:|--------------:|--------------:|------------------:|--------------:|----------:|
+| GetBestMove_PrelimBenchmark_BasePosition        | 3,620,257.7674 ns | 6,076.7677 ns | 5,074.3762 ns | 3,618,166.9922 ns |        549945 |       3 B |
+| GetBestMove_PrelimBenchmark_OnlyOnePossibleMove |         6.6029 ns |     0.0114 ns |     0.0095 ns |         6.6049 ns |             1 |         - |
+| ReturnOne_Control                               |         0.0004 ns |     0.0006 ns |     0.0006 ns |         0.0001 ns |             - |         - |

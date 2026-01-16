@@ -21,7 +21,7 @@ public readonly struct Bot
         return isFilled ? 0 : 2;
     }
 
-    public int GetBestMove(in Board board, bool xTurn)
+    public int GetBestMove(in Board board, bool xTurn, ref int nodes)
     {
         int bestScore;
         int bestSq;
@@ -34,7 +34,7 @@ public readonly struct Bot
             bestSq = sq;
             while (sq < 9)
             {
-                var score = MiniMax(board.PlayX(sq), false);
+                var score = MiniMax(board.PlayX(sq), false, ref nodes);
                 if (score > bestScore)
                 {
                     bestScore = score;
@@ -52,7 +52,7 @@ public readonly struct Bot
             bestSq = sq;
             while (sq < 9)
             {
-                var score = MiniMax(board.PlayO(sq), true);
+                var score = MiniMax(board.PlayO(sq), true, ref nodes);
                 if (score < bestScore)
                 {
                     bestScore = score;
@@ -66,8 +66,9 @@ public readonly struct Bot
         return bestSq;
     }
 
-    public int MiniMax(in Board board, bool xTurn)
+    public int MiniMax(in Board board, bool xTurn, ref int nodes)
     {
+        nodes++;
         int bestScore;
         var evaluation = EvaluateBoard(board);
         if (evaluation != 2)
@@ -82,7 +83,7 @@ public readonly struct Bot
             int sq = BitOperations.TrailingZeroCount(state);
             while (sq < 9)
             {
-                var score = MiniMax(board.PlayX(sq), false);
+                var score = MiniMax(board.PlayX(sq), false, ref nodes);
                 if (score > bestScore)
                 {
                     bestScore = score;
@@ -98,7 +99,7 @@ public readonly struct Bot
             int sq = BitOperations.TrailingZeroCount(state);
             while (sq < 9)
             {
-                var score = MiniMax(board.PlayO(sq), true);
+                var score = MiniMax(board.PlayO(sq), true, ref nodes);
                 if (score < bestScore)
                 {
                     bestScore = score;
