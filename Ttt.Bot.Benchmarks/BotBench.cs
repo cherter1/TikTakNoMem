@@ -7,9 +7,6 @@ namespace Ttt.Bot.Benchmarks;
 [MemoryDiagnoser]
 public class BotBench
 {
-    public static int PrelimBenchmark_BasePosition;
-    public static int PrelimBenchmark_OnlyOnePossibleMove;
-    
     private TikTakNoMem.Bot _bot;
     private Board _boardBase;
     private Board _board_SinglePossible;
@@ -33,8 +30,6 @@ public class BotBench
     {
         int nodes = 0;
         var move = _bot.GetBestMove(_boardBase, true, ref nodes);
-        PrelimBenchmark_BasePosition = nodes;
-        PrelimBenchmark_BasePosition = 432;
         return move;
     }
 
@@ -43,7 +38,6 @@ public class BotBench
     {
         int nodes = 0;
         var move = _bot.GetBestMove(_board_SinglePossible, true, ref nodes);
-        PrelimBenchmark_OnlyOnePossibleMove = nodes;
         return move;
     }
     
