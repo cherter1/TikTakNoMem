@@ -22,7 +22,7 @@ public class NodesVisitedColumn : IColumn
     public bool IsDefault(Summary summary, BenchmarkCase benchmarkCase) => false;
     public string GetValue(Summary summary, BenchmarkCase benchmarkCase)
     {
-        var basePosBench = benchmarkCase.Descriptor.WorkloadMethod.Name.Contains(nameof(BotBench.PrelimBenchmark_BasePosition));
+        var basePosBench = benchmarkCase.Descriptor.WorkloadMethod.Name.Contains("BasePosition");
         if (basePosBench)
         {
             int nodes = 0;
@@ -30,7 +30,7 @@ public class NodesVisitedColumn : IColumn
             bot.GetBestMove(new Board(0, 0), true, ref nodes);
             return nodes.ToString();
         }
-        if (benchmarkCase.Descriptor.WorkloadMethod.Name.Contains(nameof(BotBench.PrelimBenchmark_OnlyOnePossibleMove)))
+        if (benchmarkCase.Descriptor.WorkloadMethod.Name.Contains("OnlyOnePossibleMove"))
         {
             int nodes = 0;
             var bot = new TikTakNoMem.Bot();
