@@ -30,7 +30,12 @@ public class NodesVisitedColumn : IColumn
             bot.GetBestMove(new Board(0, 0), true, ref nodes);
             return nodes.ToString();
         }
-        if (benchmarkCase.Descriptor.WorkloadMethod.Name.Contains("OnlyOnePossibleMove"))
+
+        if (!benchmarkCase.Descriptor.WorkloadMethod.Name.Contains("OnlyOnePossibleMove"))
+        {
+            return "-";
+        }
+
         {
             int nodes = 0;
             var bot = new TikTakNoMem.Bot();
@@ -38,7 +43,6 @@ public class NodesVisitedColumn : IColumn
             return nodes.ToString();
         }
 
-        return "-";
     }
 
     public bool IsAvailable(Summary summary) => true;

@@ -16,7 +16,7 @@ public class BotBench
     {
         _bot = new TikTakNoMem.Bot();
         _boardBase = new Board(0,0);
-        _board_SinglePossible = new Board(0b_110_000_101,0b_001_011_010);
+        _board_SinglePossible = new Board(0b_110_000_101, 0b_001_011_010);
     }
 
     [GlobalCleanup]
