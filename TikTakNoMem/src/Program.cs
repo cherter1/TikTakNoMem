@@ -36,7 +36,7 @@ void PlayGame()
             break;
         }
         var nodes = 0;
-        var botMove = botPlayer.GetBestMove(myBoard, false, ref nodes);
+        var botMove = Bot.GetBestMove(myBoard, false, ref nodes);
         if (!myBoard.ValidateMove(botMove))
         {
             Console.WriteLine("Bot tried to play an illegal move!");

@@ -27,7 +27,7 @@ public class NodesVisitedColumn : IColumn
         {
             int nodes = 0;
             var bot = new TikTakNoMem.Bot();
-            bot.GetBestMove(new Board(0, 0), true, ref nodes);
+            TikTakNoMem.Bot.GetBestMove(new Board(0, 0), true, ref nodes);
             return nodes.ToString();
         }
 
@@ -39,7 +39,7 @@ public class NodesVisitedColumn : IColumn
         {
             int nodes = 0;
             var bot = new TikTakNoMem.Bot();
-            bot.GetBestMove(new Board(0b_110_000_101, 0b_001_011_010), true, ref nodes);
+            TikTakNoMem.Bot.GetBestMove(new Board(0b_110_000_101, 0b_001_011_010), true, ref nodes);
             return nodes.ToString();
         }
 
