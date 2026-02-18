@@ -14,7 +14,7 @@ void PlayGame()
         Console.WriteLine(myBoard.ToString());
         Console.WriteLine("Player Take Turn: ");
         var userInput = Console.ReadLine();
-        int validInput = -9;
+        int validInput;
         while (true)
         {
             if (!int.TryParse(userInput, out var sq))
@@ -22,13 +22,19 @@ void PlayGame()
                 continue;
             }
 
-            if (sq is < 9 and >= 0)
+            if (sq is >= 9 or < 0)
             {
-                validInput = sq;
-                break;
+                continue;
             }
+
+            validInput = sq;
+            break;
         }
         myBoard = myBoard.PlayX(validInput);
+        if (myBoard.CheckFilled() || myBoard.CheckWinX())
+        {
+            break;
+        }
         var nodes = 0;
         var botMove = botPlayer.GetBestMove(myBoard, false, ref nodes);
         if (!myBoard.ValidateMove(botMove))

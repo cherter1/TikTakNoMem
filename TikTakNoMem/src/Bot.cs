@@ -23,44 +23,20 @@ public readonly struct Bot
 
     public int GetBestMove(in Board board, bool xTurn, ref int nodes)
     {
-        int bestScore;
-        int bestSq;
-
-        if (xTurn)
+        int bestScore = -2222;
+        var state = ~(board.X | board.O);
+        int sq = BitOperations.TrailingZeroCount(state);
+        int bestSq = sq;
+        while (sq < 9)
         {
-            bestScore = -2222;
-            var state = ~(board.X | board.O);
-            int sq = BitOperations.TrailingZeroCount(state);
-            bestSq = sq;
-            while (sq < 9)
+            var score = xTurn ? MiniMax(board.PlayX(sq), false, ref nodes) : -MiniMax(board.PlayO(sq), true, ref nodes);
+            if (score > bestScore)
             {
-                var score = MiniMax(board.PlayX(sq), false, ref nodes);
-                if (score > bestScore)
-                {
-                    bestScore = score;
-                    bestSq = sq;
-                }
-                state = ~(~(state) | (1 << sq));
-                sq = BitOperations.TrailingZeroCount(state);
+                bestScore = score;
+                bestSq = sq;
             }
-        }
-        else
-        {
-            bestScore = +2222;
-            var state = ~(board.X | board.O);
-            int sq = BitOperations.TrailingZeroCount(state);
-            bestSq = sq;
-            while (sq < 9)
-            {
-                var score = MiniMax(board.PlayO(sq), true, ref nodes);
-                if (score < bestScore)
-                {
-                    bestScore = score;
-                    bestSq = sq;
-                }
-                state = ~(~(state) | (1 << sq));
-                sq = BitOperations.TrailingZeroCount(state);
-            }
+            state = ~(~(state) | (1 << sq));
+            sq = BitOperations.TrailingZeroCount(state);
         }
 
         return bestSq;
@@ -69,44 +45,24 @@ public readonly struct Bot
     public int MiniMax(in Board board, bool xTurn, ref int nodes)
     {
         nodes++;
-        int bestScore;
         var evaluation = EvaluateBoard(board);
         if (evaluation != 2)
         {
             return evaluation;
         }
 
-        if (xTurn)
+        int bestScore = -2222; //MIN
+        var state = ~(board.X | board.O);
+        int sq = BitOperations.TrailingZeroCount(state);
+        while (sq < 9)
         {
-            bestScore = -2222;
-            var state = ~(board.X | board.O);
-            int sq = BitOperations.TrailingZeroCount(state);
-            while (sq < 9)
+            var score = xTurn ? MiniMax(board.PlayX(sq), false, ref nodes) : -MiniMax(board.PlayO(sq), true, ref nodes);
+            if (score > bestScore)
             {
-                var score = MiniMax(board.PlayX(sq), false, ref nodes);
-                if (score > bestScore)
-                {
-                    bestScore = score;
-                }
-                state = ~(~(state) | (1 << sq));
-                sq = BitOperations.TrailingZeroCount(state);
+                bestScore = score;
             }
-        }
-        else
-        {
-            bestScore = +2222;
-            var state = ~(board.X | board.O);
-            int sq = BitOperations.TrailingZeroCount(state);
-            while (sq < 9)
-            {
-                var score = MiniMax(board.PlayO(sq), true, ref nodes);
-                if (score < bestScore)
-                {
-                    bestScore = score;
-                }
-                state = ~(~(state) | (1 << sq));
-                sq = BitOperations.TrailingZeroCount(state);
-            }
+            state = ~(~(state) | (1 << sq));
+            sq = BitOperations.TrailingZeroCount(state);
         }
 
         return bestScore;
