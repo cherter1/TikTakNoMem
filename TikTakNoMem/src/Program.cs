@@ -1,5 +1,7 @@
 ﻿using TikTakNoMem;
 
+//var b = new Board(0b_110_000_001,0b_000_011_010);
+//Console.WriteLine(b.ToString());
 PlayGame();
 
 return;
@@ -7,7 +9,9 @@ return;
 void PlayGame()
 {
     var myBoard = new Board(0,0);
-    var botPlayer = new Bot();
+    //var myBoard = new Board(0b_110_000_101,0b_001_011_010);
+    //var myBoard = new Board(0b_001_100_001,0b_000_011_010);
+
     while (!myBoard.CheckWinO() && !myBoard.CheckWinX() && !myBoard.CheckFilled())
     {
         
