@@ -12,6 +12,7 @@ void PlayGame()
     //var myBoard = new Board(0b_110_000_101,0b_001_011_010);
     //var myBoard = new Board(0b_001_100_001,0b_000_011_010);
 
+    var myBot = new Bot();
     while (!myBoard.CheckWinO() && !myBoard.CheckWinX() && !myBoard.CheckFilled())
     {
         
@@ -40,7 +41,7 @@ void PlayGame()
             break;
         }
         var nodes = 0;
-        var botMove = Bot.GetBestMove(myBoard, false, ref nodes);
+        var botMove = myBot.GetBestMove(myBoard, false, ref nodes);
         if (!myBoard.ValidateMove(botMove))
         {
             Console.WriteLine("Bot tried to play an illegal move!");

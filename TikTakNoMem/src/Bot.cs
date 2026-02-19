@@ -4,6 +4,7 @@ namespace TikTakNoMem;
 
 public readonly struct Bot
 {
+    public bool IsX => false;
     /// <summary>
     /// evaluates the position of a given board
     /// </summary>
@@ -16,7 +17,7 @@ public readonly struct Bot
         return board.CheckFilled() ? 0 : 2;
     }
 
-    public static int GetBestMove(in Board board, bool xTurn, ref int nodes)
+    public int GetBestMove(in Board board, bool xTurn, ref int nodes)
     {
         int bestScore = -2222;
         var state = ~(board.X | board.O);
@@ -24,7 +25,8 @@ public readonly struct Bot
         int bestSq = sq;
         while (sq < 9)
         {
-            var score = xTurn ? MiniMax(board.PlayX(sq), false, ref nodes) : -MiniMax(board.PlayO(sq), true, ref nodes);
+            var score = xTurn ? MiniMax(board.PlayX(sq), false, ref nodes) : MiniMax(board.PlayO(sq), true, ref nodes);
+            score = IsX ? score : -score;
             if (score > bestScore)
             {
                 bestScore = score;
@@ -52,7 +54,7 @@ public readonly struct Bot
         while (sq < 9)
         {
             var score = xTurn ? MiniMax(board.PlayX(sq), false, ref nodes) 
-                              : -MiniMax(board.PlayO(sq), true, ref nodes);
+                              : MiniMax(board.PlayO(sq), true, ref nodes);
             if (score > bestScore)
             {
                 bestScore = score;
