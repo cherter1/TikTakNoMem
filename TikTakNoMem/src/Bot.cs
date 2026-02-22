@@ -4,7 +4,7 @@ namespace TikTakNoMem;
 
 public readonly struct Bot
 {
-    public bool IsX => false;
+    private bool IsX => false;
     /// <summary>
     /// evaluates the position of a given board
     /// </summary>
