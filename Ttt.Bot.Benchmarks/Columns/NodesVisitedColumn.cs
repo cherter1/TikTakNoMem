@@ -10,7 +10,7 @@ public class NodesVisitedColumn : IColumn
     public string Id { get; }
     public string ColumnName { get; }
 
-    public NodesVisitedColumn(string columnName, Func<string, string> getTag)
+    public NodesVisitedColumn(string columnName)
     {
         ColumnName = columnName;
         Id = nameof(NodesVisitedColumn) + "." + ColumnName;
