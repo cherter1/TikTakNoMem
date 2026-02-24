@@ -29,7 +29,7 @@ public class BotBench
     public int GetBestMove_PrelimBenchmark_BasePosition()
     {
         int nodes = 0;
-        var move = TikTakNoMem.Bot.GetBestMove(_boardBase, true, ref nodes);
+        var move = _bot.GetBestMove(_boardBase, true, ref nodes);
         return move;
     }
 
@@ -37,7 +37,7 @@ public class BotBench
     public int GetBestMove_PrelimBenchmark_OnlyOnePossibleMove()
     {
         int nodes = 0;
-        var move = TikTakNoMem.Bot.GetBestMove(_board_SinglePossible, true, ref nodes);
+        var move = _bot.GetBestMove(_board_SinglePossible, true, ref nodes);
         return move;
     }
     

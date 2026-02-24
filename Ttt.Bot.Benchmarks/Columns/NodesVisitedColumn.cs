@@ -7,14 +7,11 @@ namespace Ttt.Bot.Benchmarks.Columns;
 
 public class NodesVisitedColumn : IColumn
 {
-    private readonly Func<string, string> getTag;
-
     public string Id { get; }
     public string ColumnName { get; }
 
     public NodesVisitedColumn(string columnName, Func<string, string> getTag)
     {
-        this.getTag = getTag;
         ColumnName = columnName;
         Id = nameof(NodesVisitedColumn) + "." + ColumnName;
     }
@@ -27,7 +24,7 @@ public class NodesVisitedColumn : IColumn
         {
             int nodes = 0;
             var bot = new TikTakNoMem.Bot();
-            TikTakNoMem.Bot.GetBestMove(new Board(0, 0), true, ref nodes);
+            bot.GetBestMove(new Board(0, 0), true, ref nodes);
             return nodes.ToString();
         }
 
@@ -39,7 +36,7 @@ public class NodesVisitedColumn : IColumn
         {
             int nodes = 0;
             var bot = new TikTakNoMem.Bot();
-            TikTakNoMem.Bot.GetBestMove(new Board(0b_110_000_101, 0b_001_011_010), true, ref nodes);
+            bot.GetBestMove(new Board(0b_110_000_101, 0b_001_011_010), true, ref nodes);
             return nodes.ToString();
         }
 
