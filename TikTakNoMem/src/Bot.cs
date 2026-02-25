@@ -1,5 +1,4 @@
 using System.Numerics;
-
 namespace TikTakNoMem;
 
 public readonly struct Bot
