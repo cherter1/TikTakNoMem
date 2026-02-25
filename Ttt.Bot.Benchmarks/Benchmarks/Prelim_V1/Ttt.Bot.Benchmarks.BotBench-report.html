@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Ttt.Bot.Benchmarks.BotBench-20260116-000548</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.7623/25H2/2025Update/HudsonValley2)
+AMD Ryzen 5 7600X 4.70GHz, 1 CPU, 12 logical and 6 physical cores
+  [Host]     : .NET 10.0.1, X64 NativeAOT x86-64-v4
+  DefaultJob : .NET 10.0.1, X64 NativeAOT x86-64-v4
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method                                   </th><th>Mean       </th><th>Error  </th><th>StdDev </th><th>Median     </th><th>Nodes Visited</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>GetBestMove_PrelimBenchmark_BasePosition</td><td>3,620,257.7674 ns</td><td>6,076.7677 ns</td><td>5,074.3762 ns</td><td>3,618,166.9922 ns</td><td>549945</td><td>3 B</td>
+</tr><tr><td>GetBestMove_PrelimBenchmark_OnlyOnePossibleMove</td><td>6.6029 ns</td><td>0.0114 ns</td><td>0.0095 ns</td><td>6.6049 ns</td><td>1</td><td>-</td>
+</tr><tr><td>ReturnOne_Control</td><td>0.0004 ns</td><td>0.0006 ns</td><td>0.0006 ns</td><td>0.0001 ns</td><td>-</td><td>-</td>
+</tr></tbody></table>
+</body>
+</html>
